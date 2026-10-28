@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Rice Quality Precision</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="authbody">
+  <main class="auth-shell">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <div class="auth-brand">
+        <span class="auth-brand-mark" aria-hidden="true">🌾</span>
+        <span>RICE QUALITY <b>PRECISION</b></span>
+      </div>
+      <form method="post" class="auth-form">
+        <h1 id="auth-title">Welcome back</h1>
+        <p class="auth-intro">Sign in to inspect your rice quality.</p>
+        {% if err %}
+          <div class="auth-message {{ 'success' if ok else 'error' }}" role="status">{{ err }}</div>
+        {% endif %}
+        <input type="hidden" name="mode" id="mode" value="{{ mode }}">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" placeholder="Enter your username" required autofocus>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}" placeholder="Enter your password" required>
+        <button class="auth-submit" id="btn" type="submit">Log in</button>
+        <p class="auth-switch"><a href="#" onclick="return toggleMode()" id="swl">New here? Create an account</a></p>
+        <p class="auth-terms">By continuing, you agree to use image-based rice quality checks responsibly.</p>
+      </form>
+    </section>
+    <p class="auth-caption">A clearer view of every grain.<br><span>Quick visual checks for high- and low-quality rice.</span></p>
+  </main>
+  <script>
+    let registering = {{ 'true' if mode == 'register' else 'false' }};
+    const formMode = document.getElementById("mode");
+    const title = document.getElementById("auth-title");
+    const submit = document.getElementById("btn");
+    const switchLink = document.getElementById("swl");
+    const password = document.getElementById("password");
+
+    function updateMode() {
+      formMode.value = registering ? "register" : "login";
+      title.textContent = registering ? "Create your account" : "Welcome back";
+      submit.textContent = registering ? "Create account" : "Log in";
+      switchLink.textContent = registering ? "Already registered? Log in" : "New here? Create an account";
+      password.autocomplete = registering ? "new-password" : "current-password";
+    }
+
+    function toggleMode() {
+      registering = !registering;
+      updateMode();
+      return false;
+    }
+    updateMode();
+  </script>
+</body>
+</html>

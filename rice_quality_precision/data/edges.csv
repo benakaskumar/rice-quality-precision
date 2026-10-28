@@ -1,0 +1,7 @@
+from,to
+Farm,Mill
+Mill,Warehouse
+Mill,Export Hub
+Warehouse,Distributor
+Export Hub,Distributor
+Distributor,Retailer

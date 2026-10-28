@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Rice Quality Precision",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/rice_quality_precision/app.py",
+      "python": "${workspaceFolder}/rice_quality_precision/venv/Scripts/python.exe",
+      "cwd": "${workspaceFolder}/rice_quality_precision",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+
